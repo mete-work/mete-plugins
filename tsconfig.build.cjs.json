@@ -2,7 +2,7 @@
   "extends": "./tsconfig.build.json",
   "include": ["src"],
   "compilerOptions": {
-    "noEmit": false,
-    "emitDeclarationOnly": false
+    "outDir": "./dist/cjs",
+    "declarationDir": "./dist/cjs"
   }
 }

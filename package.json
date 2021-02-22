@@ -1,32 +1,39 @@
 {
-  "name": "@mete-work/plugins",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mete-work/mete-plugins.git"
-  },
-  "description": "A simple registry that stores all plugins in a shared object.",
-  "contributors": [
-    "GoDotDotDot <chukui0202@gmail.com>"
-  ],
-  "license": "MIT",
-  "dependencies": {
-    "@babel/runtime": "^7.5.5",
-    "uniqid": "^5.2.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "typescript": "^4.0.2"
-  },
-  "publishConfig": {
-    "access": "public",
-    "directory": "dist"
-  },
-  "scripts": {
-    "build": "rimraf ./dist *.tsbuildinfo && babel src -d dist --source-maps --copy-files --extensions \".ts\"",
-    "watch": "babel src -d dist --source-maps --copy-files --extensions \".ts\" --watch",
-    "postbuild": "cp package.json LICENSE README.md dist/ && tsc -p tsconfig.build.json"
-  }
+	"name": "@mete-work/plugins",
+	"version": "1.0.1",
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
+	"files": [
+		"dist",
+		"LICENSE",
+		"README.MD"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mete-work/mete-plugins.git"
+	},
+	"description": "A simple registry that stores all plugins in a shared object.",
+	"contributors": [
+		"GoDotDotDot <chukui0202@gmail.com>"
+	],
+	"license": "MIT",
+	"dependencies": {
+		"@babel/runtime": "^7.5.5",
+		"uniqid": "^5.2.0"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.5.5",
+		"@babel/core": "^7.5.5",
+		"@types/uniqid": "^5.2.0",
+		"typescript": "^4.0.2"
+	},
+	"publishConfig": {
+		"access": "public",
+		"directory": "dist"
+	},
+	"scripts": {
+		"build": "rm -rf ./dist && mkdir dist",
+		"postbuild": "tsc -p tsconfig.build.cjs.json && tsc -p tsconfig.build.esm.json && rm -rf ./dist/*.tsbuildinfo",
+		"watch": "babel src -d dist --source-maps --copy-files --extensions \".ts\" --watch"
+	}
 }
